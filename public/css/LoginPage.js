@@ -51,10 +51,6 @@ document.getElementById("form").addEventListener("submit", function (event) {
     }
     this.submit();
 });
-function delay()
-{
-    console.log("Login");
-}
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@gmail\.com$/i;
     return emailRegex.test(email);
@@ -74,5 +70,5 @@ chk2.addEventListener("click", function () {
     password.type = "password";
 });
 function Landing() {
-    window.location.href = "LandingPage.html";
+    window.location.href = "/views/LandingPage.html";
 }

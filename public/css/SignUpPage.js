@@ -13,7 +13,7 @@ over.addEventListener("click", function (e) {
     document.getElementById("menuList").style.display = "none";
 });
 function Login() {
-    window.location.href = "LoginPage.html";
+    window.location.href = "/views/LoginPage.html";
 }
 function flipContainer() {
     var container = document.querySelector('.container');
@@ -98,5 +98,5 @@ chk2.addEventListener("click", function () {
     password.type = "password";
 });
 function Landing() {
-    window.location.href = "LandingPage.html";
+    window.location.href = "/views/LandingPage.html";
 }

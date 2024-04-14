@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
-router.use(express.static(__dirname));
+router.use(express.static(path.join(__dirname, '..', 'views')));
 
 router.post('/login', (req, res) => {
     console.log('Received data:', req.body);
