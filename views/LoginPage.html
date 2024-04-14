@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Logo.jpg">
+    <link rel="stylesheet" href="LoginPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-dVXBV1ouKrlv9fPoU4K6Dk3rOv8AhrFOpi2juGk8X0s63PMAntQvOv9qfmKiuOeW" crossorigin="anonymous">
+    <title>ShopEx - Login</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div id="Logo" onclick="Landing()">
+                <img src="Logo.jpg" alt="Logo">
+                <h1>ShopEx</h1>
+            </div>
+            <section id="one">
+                <div id="menu">
+                    <ul>
+                        <li><a href="LandingPage.html">Home</a>
+                        </li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div id="icon">
+                    <i class="fa-solid fa-circle-chevron-down"></i>
+                </div>
+                <div id="menuList">
+                    <li><a href="LandingPage.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </div>
+                <div id="overlay"></div>
+            </section>
+        </nav>
+    </header>
+    <div id="choice">
+        <button id="b1" class="button">Login</button>
+        <button id="b2" onclick=flipContainer() class="button">Sign Up</button>
+    </div>
+    <section id="two">
+        <div class="container">
+            <div id="con1" class="inner">
+                <img src="BgLogin.png" alt="">
+            </div>
+            <div id="con2" class="inner">
+                <form action="http://localhost:3000/login" method="post" id="form">
+                    <h1>Welcome Back!</h1>
+                    <label for="email"></label>
+                    <input required type="email" name="email" id="email" placeholder="E-mail">
+                    <label for="password"></label>
+                    <input required type="password" name="password" id="password" placeholder="Password">
+                    <div>
+                        <div class="show">
+                            <i id="chk1" class="fa fa-regular fa-square" style="color: black;"></i>
+                            <i id="chk2" class="fa fa-regular fa-square-check" style="color: black;"></i>
+                            <p>Show Password</p>
+                        </div>
+                        <a href="ForgotPasswordPage.html">Forgot Password?</a>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+    <footer style="color: #9c9b9b;">
+        Made with <i style="color: red;" class="fa fa-heart"></i> by Ahmad Waheed
+    </footer>
+</body>
+
+<script src="LoginPage.js"></script>
+
+</html>

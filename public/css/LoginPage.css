@@ -1,0 +1,400 @@
+/* General styles */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+p,
+span {
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 70px;
+}
+
+#Logo {
+    display: flex;
+    align-items: center;
+}
+
+#Logo:hover {
+    cursor: pointer;
+}
+
+#Logo img {
+    height: 40px;
+}
+
+#Logo h1 {
+    font-family: Comic Sans Ms;
+    font-size: 34px;
+    margin: 0;
+    margin-left: 5px;
+}
+
+/* Menu styles */
+#one {
+    display: flex;
+    justify-content: space-between;
+}
+
+#menu ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+
+#menu ul li {
+    list-style: none;
+    margin: 0 20px;
+    color: black;
+}
+
+#menu ul li:hover {
+    cursor: pointer;
+}
+
+#menu ul li:hover a,
+#menu ul li:hover i {
+    color: #00e7ff;
+}
+
+#menu ul li a {
+    text-decoration: none;
+    color: black;
+    font-family: Comic Sans Ms;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+#icon {
+    display: none;
+}
+
+#icon i {
+    font-size: 25px;
+}
+
+#menuList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    width: 100px;
+    border-radius: 10px;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: none;
+}
+
+#menuList li {
+    list-style: none;
+    height: 30px;
+}
+
+#menuList li a {
+    text-decoration: none;
+    color: white;
+    font-family: Comic Sans Ms;
+}
+
+#menuList li a:hover {
+    color: #00e7ff;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 99;
+    display: none;
+}
+
+#choice {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.button {
+    background-color: white;
+    border: 1px solid black;
+    width: 100px;
+    height: 30px;
+
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+#b1 {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: black;
+    color: white;
+}
+
+#b2 {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: black;
+}
+
+.container.flipped {
+    animation: flipAnimation 1s forwards;
+}
+
+@keyframes flipAnimation {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(90deg);
+    }
+}
+
+#two {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 540px;
+}
+
+#two .container {
+    width: 70%;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+}
+
+#con1 {
+    width: 50%;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#con1 img {
+    width: 400px;
+}
+
+#con2 {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 50%;
+    height: 100%;
+    background-color: rgb(244, 247, 251);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+#form h1 {
+    font-family: Comic Sans Ms;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+#form p {
+    font-family: sans-serif;
+    font-size: 14px;
+    margin-left: 0px;
+}
+
+#form input {
+    width: 300px;
+    padding: 15px 20px;
+    margin: 10px 0;
+    border-radius: 40px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    box-shadow: #cff0ff 0px 10px 10px -5px;
+}
+
+#form input:focus {
+    outline: none;
+    border-inline: 3px solid #12B1D1;
+}
+#form>div
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+}
+.show
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.show i
+{
+    font-size: 14px;
+    margin-right: 5px;
+}
+.show i:hover
+{
+    cursor: pointer;
+}
+#chk2
+{
+    display: none;
+}
+.show p
+{
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    margin-top: 2.5px;
+}
+#form button {
+    width: 306px;
+    height: 40px;
+    border-radius: 40px;
+    font-weight: bold;
+    color: white;
+    margin: 40px 0;
+    border: none;
+    background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+}
+
+#form button:hover {
+    cursor: pointer;
+    scale: 1.04;
+}
+
+#form button:active {
+    scale: 0.97;
+}
+
+#form div>a {
+    text-decoration: none;
+    /* margin-left: 180px; */
+}
+
+#form div a:hover {
+    filter: brightness(1.3);
+    text-decoration: underline;
+}
+
+
+
+
+@media only screen and (max-width: 1200px) {
+    #two .container {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #two .container {
+        flex-direction: column;
+    }
+
+    #con1 {
+        display: none;
+    }
+
+    #con2 {
+        width: 100%;
+        border-radius: 10px;
+        height: 100%;
+    }
+
+    #form div>a {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #menu {
+        display: none;
+    }
+
+    #icon {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #form h1 {
+        font-size: 30px;
+    }
+
+    #form input {
+        width: 80%;
+        height: 10px;
+    }
+
+    #form button {
+        width: 80%;
+    }
+    #form>div
+    {
+        flex-direction: column;
+    }
+    #form div>a
+    {
+        margin-bottom: 0;
+    }
+    .show
+    {
+        margin-bottom: 30px;
+    }
+}
