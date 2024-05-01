@@ -291,7 +291,7 @@ hr {
     margin-top: 20px;
     width: 100%;
     height: 500px;
-    background-image: url(/public/images/hero4.png);
+    background-image: url(/images/hero4.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top 25% right 0px;
@@ -453,7 +453,7 @@ hr {
 
 .c12 {
     width: 100%;
-    background-image: url(/public/images/2.png);
+    background-image: url(/images/2.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
@@ -492,7 +492,7 @@ hr {
 
 .c22 {
     width: 100%;
-    background-image: url(/public/images/watch.webp);
+    background-image: url(/images/watch.webp);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
@@ -755,11 +755,11 @@ footer .container {
 }
 
 #b1 {
-    background-image: url(/public/images/Store/AppStore.jpg);
+    background-image: url(/images/Store/AppStore.jpg);
 }
 
 #b2 {
-    background-image: url(/public/images/Store/PlayStore.jpg);
+    background-image: url(/images/Store/PlayStore.jpg);
 }
 
 .cont3 div button:hover {

@@ -45,5 +45,5 @@ function validateForm() {
     alert("Password Reset.");
 }
 function Landing() {
-    window.location.href = "/views/LandingPage.html";
+    window.location.href = "/LandingPage.html";
 }

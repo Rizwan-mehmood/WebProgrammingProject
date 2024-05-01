@@ -3,7 +3,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: url(/public/images/BG.jpg);
+    background: url(/images/BG.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     width: 99%;

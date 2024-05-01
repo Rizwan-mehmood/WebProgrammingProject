@@ -1,10 +1,10 @@
 const cardData = [
-    { image: '/public/images/Explore/1.png', title: 'Electronics' },
-    { image: '/public/images/Explore/2.png', title: 'Smart Watches' },
-    { image: '/public/images/Explore/3.png', title: 'Smart Phones' },
-    { image: '/public/images/Explore/4.png', title: 'Smart LCD' },
-    { image: '/public/images/Explore/5.png', title: 'Kitchen & Accesories' },
-    { image: '/public/images/Explore/6.png', title: "Men's Fashion" }
+    { image: '/images/Explore/1.png', title: 'Electronics' },
+    { image: '/images/Explore/2.png', title: 'Smart Watches' },
+    { image: '/images/Explore/3.png', title: 'Smart Phones' },
+    { image: '/images/Explore/4.png', title: 'Smart LCD' },
+    { image: '/images/Explore/5.png', title: 'Kitchen & Accesories' },
+    { image: '/images/Explore/6.png', title: "Men's Fashion" }
 ];
 function createCard(imageSrc, title) {
     const cardDiv = document.createElement('div');

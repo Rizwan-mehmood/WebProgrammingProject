@@ -13,7 +13,7 @@ over.addEventListener("click", function (e) {
     document.getElementById("menuList").style.display = "none";
 });
 function SignUp() {
-    window.location.href = "SignUpPage.html";
+    window.location.href = "/SignUpPage.html";
 }
 function flipContainer() {
     var container = document.querySelector('.container');
@@ -22,7 +22,6 @@ function flipContainer() {
 }
 document.getElementById("form").addEventListener("submit", function (event) {
     event.preventDefault();
-    setTimeout(delay, 10000);
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
     const email = emailInput.value.trim();
@@ -70,5 +69,5 @@ chk2.addEventListener("click", function () {
     password.type = "password";
 });
 function Landing() {
-    window.location.href = "/views/LandingPage.html";
+    window.location.href = "/LandingPage.html";
 }
