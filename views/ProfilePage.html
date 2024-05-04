@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/Logo.jpg">
+    <link rel="stylesheet" href="/css/ProfilePage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-dVXBV1ouKrlv9fPoU4K6Dk3rOv8AhrFOpi2juGk8X0s63PMAntQvOv9qfmKiuOeW" crossorigin="anonymous">
+    <title>ShopEx - Profile Page</title>
+</head>
+
+<body>
+    <nav>
+        <div id="Logo" onclick="Landing()">
+            <img src="/images/Logo.jpg" alt="Logo">
+            <h1>ShopEx</h1>
+        </div>
+        <div id="Search" class="search">
+            <input type="text" placeholder="Search Product...">
+            <div>
+                <i class="fa fa-search"></i>
+            </div>
+        </div>
+        <div id="accounts">
+            <div id="a2">
+                <i class="fa fa-shopping-cart"></i>
+                <p>Cart</p>
+            </div>
+            <div id="a1">
+                <div id="a11">
+                    <p id="acc"></p>
+                    <img id="profilePic" style="display: none;" src="" alt="Error showing image">
+                </div>
+            </div>
+        </div>
+    </nav>
+    <hr>
+    <div id="container">
+        <div id="chngpass">
+            <i class="fa fa-light fa-unlock-keyhole"></i>
+            <a>Change Password</a>
+        </div>
+        <hr>
+        <div id="logout">
+            <button onclick="logout()">Logout<i class="fa-solid fa-right-from-bracket"></i></button>
+        </div>
+    </div>
+    <div id="info">
+        <div id="text">
+            <div id="one">
+                <div>
+                    <p>First Name:</p>
+                </div>
+                <div>
+                    <p>Last Name:</p>
+                </div>
+                <div>
+                    <p>Email:</p>
+                </div>
+                <div>
+                    <p>Phone:</p>
+                </div>
+                <div>
+                    <p>Bio:</p>
+                </div>
+            </div>
+            <div id="two">
+                <div>
+                    <p></p>
+                </div>
+                <div>
+                    <p></p>
+                </div>
+                <div>
+                    <p></p>
+                </div>
+                <div>
+                    <p></p>
+                </div>
+                <div>
+                    <textarea></textarea>
+                </div>
+            </div>
+        </div>
+        <div id="pic">
+            <img src="" onclick="replaceImage()" alt="Uploaded Image" id="uploadedImage" style="display: none;">
+            <button id="choosebutton" onclick="chooseFile()" style="display: none;">Choose Image</button>
+        </div>
+    </div>
+    <div id="buttons">
+        <button id="save">Save</button>
+        <button id="cancel">Cancel</button>
+        <button id="edit">Edit</button>
+    </div>
+    <div id="overlay"></div>
+    <div id="passwordUpdate">
+        <input id="oldPass" type="password" placeholder="Old Password">
+        <input id="newPass" type="password" placeholder="New Password">
+        <input id="confPass" type="password" placeholder="Confirm Password">
+        <div>
+            <i class="fa-regular fa-square"></i>
+            <i style="display: none;" class="fa-regular fa-square-check"></i>
+            <span>Show Password</span>
+        </div>
+        <button onclick="resetPassword()" id="resetPassword">Change Password</button>
+    </div>
+</body>
+<script src="/css/ProfilePage.js"></script>
+
+</html>
