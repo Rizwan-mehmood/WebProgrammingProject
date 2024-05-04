@@ -53,7 +53,32 @@ db.connect((err) => {
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(express.static(path.join(__dirname, "..", "views")));
+router.post("/AdminLogin", (req, res) => {
+  const { username, password } = req.body;
 
+  // Query to check if the provided email and password exist in the database
+  const sql = "SELECT * FROM `admin` WHERE `username` = ? AND `password` = ?";
+  db.query(sql, [username, password], (err, results) => {
+    if (err) {
+      res.status(500).send("Error querying database");
+      console.error("Error querying database:", err);
+      return;
+    }
+
+    // Check if any record matches the provided email and password
+    if (results.length > 0) {
+      // User authenticated successfully
+      console.log("Login successful");
+      // Send fetched data along with redirect URL
+      const userData = results[0]; // Assuming only one user is fetched
+      return res.redirect("/AdminProfilePage.html");
+    } else {
+      // No matching record found
+      res.status(401).send("Invalid email or password");
+      console.log("Invalid email or password");
+    }
+  });
+});
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -283,8 +308,7 @@ router.post("/resetPassword", (req, res) => {
           console.log("User data updated successfully");
           res.sendStatus(200);
         });
-      }
-      else {
+      } else {
         res.status(401).send("Invalid password");
         console.log("Invalid password");
       }
