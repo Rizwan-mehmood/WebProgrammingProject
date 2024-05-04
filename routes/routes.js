@@ -282,7 +282,7 @@ router.post("/getData", (req, res) => {
       res.status(401).send("Invalid email or password");
       console.log("Invalid email or password");
     }
-  });
+  })
 });
 router.post("/resetPassword", (req, res) => {
   const { email, oldPass, newPass } = req.body;
