@@ -19,7 +19,7 @@
     </div>
     <section>
         <div id="container">
-            <form action="http://localhost:3000/signupVerify" method="post">
+            <form id="verificationForm">
                 <h1>Verification</h1>
                 <p>Enter six digit code sent to your email.</p>
                 <div id="input">
@@ -27,7 +27,7 @@
                     <label for="code"></label>
                     <input required type="text" id="code" name="code" placeholder="Code">
                 </div>
-                <button type="submit" onclick="validateForm()">Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </div>
     </section>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/Logo.jpg">
+    <link rel="stylesheet" href="/css/GetData.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-dVXBV1ouKrlv9fPoU4K6Dk3rOv8AhrFOpi2juGk8X0s63PMAntQvOv9qfmKiuOeW" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans&display=swap" rel="stylesheet">
+
+    <title>ShopEx - Enter Data</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="sec1">
+            <h1 style="font-family: Comic Sans Ms;"><img style="width: 30px; margin-right: 5px" src="/images/Logo.jpg"
+                    alt="">Welcome to ShopEx</h1>
+            <h3>Please fill out your details to continue</h3>
+        </div>
+        <div id="sec2">
+            <form action="http://localhost:3000/AddUser" method="post" id="form">
+                <label for="fname"></label>
+                <input id="fname" name="fname" type="text" placeholder="FirstName*">
+                <label for="lname"></label>
+                <input id="lname" name="lname" type="text" placeholder="LastName*">
+                <label for="email"></label>
+                <input style="width: 300px;" id="email" name="email" type="email" placeholder="Email*"><br>
+                <label for="phone"></label>
+                <input id="phone" name="phone" type="text" placeholder="Phone*"><br>
+                <label for="password"></label>
+                <input id="password" name="password" type="password" placeholder="Password*">
+                <label for="confirm"></label>
+                <input id="confirm" name="confirm" type="password" placeholder="Confirm Password*">
+                <div id="show">
+                    <i id="chk1" class="fa fa-regular fa-square" style="color: black;"></i>
+                    <i id="chk2" class="fa fa-regular fa-square-check" style="color: black;"></i>
+                    <p>Show Password</p>
+                </div>
+                <div id="btn">
+                    <button type="submit">Continue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    const queryString = window.location.search;
+    const urlParams1 = new URLSearchParams(queryString);
+    let firstName = urlParams1.get("firstName");
+    let lastName = urlParams1.get("lastName");
+    let email = urlParams1.get("email");
+    document.getElementById("fname").value = firstName;
+    document.getElementById("lname").value = lastName;
+    document.getElementById("email").value = email.slice(0, -1);
+    document.addEventListener("DOMContentLoaded", function () {
+        const queryString = window.location.search;
+        const urlParams1 = new URLSearchParams(queryString);
+        let firstName = urlParams1.get("firstName");
+        let lastName = urlParams1.get("lastName");
+        let email = urlParams1.get("email");
+        document.getElementById("fname").value = firstName;
+        document.getElementById("lname").value = lastName;
+        document.getElementById("email").value = email.slice(0, -1);
+    });
+    document.getElementById("form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        var fname = document.getElementById("fname").value;
+        var lname = document.getElementById("lname").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+        var password = document.getElementById("password").value;
+        var confirm = document.getElementById("confirm").value;
+        if (!/^[a-zA-Z]+$/.test(fname)) {
+            alert("First Name cannot be a number");
+            return;
+        }
+        if (!/^[a-zA-Z]+$/.test(lname)) {
+            alert("Last Name cannot be a number");
+            return;
+        }
+        if (!isValidEmail(email)) {
+            alert("Please enter a valid email");
+            return;
+        }
+        if (!isValidPhone(phone)) {
+            alert("Please enter a valid phone number");
+            return;
+        }
+        if (password.length < 8) {
+            alert("Password must be at least 8 characters");
+            return;
+        }
+        if (password != confirm) {
+            alert("Passwords do not match");
+            return;
+        }
+        this.submit();
+    });
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+        return emailRegex.test(email);
+    }
+    function isValidPhone(phone) {
+        const phoneRegex = /^03\d{9}$/;
+        return phoneRegex.test(phone);
+    }
+    let m = document.getElementById("chk1");
+    let n = document.getElementById("chk2");
+    m.addEventListener("click", function () {
+        m.style.display = "none";
+        n.style.display = "block";
+        document.getElementById("password").type = "text";
+        document.getElementById("confirm").type = "text";
+    });
+    n.addEventListener("click", function () {
+        n.style.display = "none";
+        m.style.display = "block";
+        document.getElementById("password").type = "password";
+        document.getElementById("confirm").type = "password";
+    });
+
+</script>
+
+</html>

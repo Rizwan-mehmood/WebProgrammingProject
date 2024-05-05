@@ -1,0 +1,101 @@
+html,
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    width: 99%;
+    height: 90vh;
+    background-color: #00ffff30;
+    align-items: center;
+    justify-content: center;
+}
+
+#container {
+    width: 70%;
+    height: 400px;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+}
+
+h3 {
+    font-weight: 100;
+    font-family: "Google Sans", roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+}
+
+#sec1 {
+    width: 100%;
+    padding-left: 30px;
+    padding-top: 40px;
+}
+
+#sec2 {
+    width: 100%;
+    padding-top: 50px;
+}
+
+#sec2 input {
+    height: 30px;
+    margin: 5px 10px;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    font-size: 14px;
+    padding: 10px 10px;
+}
+#sec2 input:focus,
+#sec2 input:active
+{
+    border: 2px solid black;
+    outline: none;
+    box-shadow: 0 0 10px rgba(121, 255, 239, 0.8);
+    border-radius: 5px;
+}
+#show {
+    display: flex;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+#show i
+{
+    padding-top: 1px;
+    margin-right: 3px;
+}
+#show i:nth-child(2)
+{
+    display: none;
+}
+#show p {
+    margin: 0;
+    padding: 0;
+    font-family: "Google Sans", roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+}
+#btn
+{
+    margin-top: 20px;
+    width: 80%;
+    text-align: right;
+}
+
+#btn button
+{
+    width: 120px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background-color: transparent;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+#btn button:hover
+{
+    cursor: pointer;
+    border: 1px solid black;
+}

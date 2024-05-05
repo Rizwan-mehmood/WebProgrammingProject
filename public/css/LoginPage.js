@@ -51,7 +51,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
     this.submit();
 });
 function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@gmail\.com$/i;
+    const emailRegex = /^[^\s@]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
 }
 let chk1 = document.querySelector("#chk1");
