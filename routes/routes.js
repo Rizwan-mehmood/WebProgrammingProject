@@ -32,6 +32,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+
 // Function to generate a random verification code
 function generateVerificationCode() {
   return Math.floor(100000 + Math.random() * 900000);
