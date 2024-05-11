@@ -265,7 +265,12 @@ nav {
     font-size: 16px;
     box-shadow: #cff0ff 0px 10px 10px -5px;
 }
-
+.valid
+{
+    color: red;
+    margin: 5px 0;
+    display: none;
+}
 #form input:focus {
     outline: none;
     border-inline: 3px solid #12B1D1;

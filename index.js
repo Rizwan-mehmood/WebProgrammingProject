@@ -3,21 +3,16 @@
 const express = require("express");
 const session = require("express-session");
 const routes = require("./routes/routes");
+const User = require("./models/User");
 const path = require("path");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-
-
-
-
-
-
 
 const app = express();
 
 app.use(
   session({
-    secret: "",
+    secret: "secret",
     resave: false,
     saveUninitialized: false,
   })
@@ -51,15 +46,20 @@ app.get(
 
 app.get(
   "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
-  function (req, res) {
-    // console.log(req.user);
+  passport.authenticate("google", { failureRedirect: "/LoginPage.html" }),
+  async function (req, res) {
+    const email = req.user._json.email;
+
+    // Check if email exists in the database
+    const existingUser = await User.findOne({ where: { email: email } });
+    if (existingUser) {
+      return res.redirect("/LoginPage.html?userExists=true");
+    }
     var userName = req.user._json.name;
     var parts = userName.split(" ");
     var fname;
 
     var lname;
-    var email = req.user._json.email;
     if (parts.length === 1) {
       fname = parts[0];
       lname = "";

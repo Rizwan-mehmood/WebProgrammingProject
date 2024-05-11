@@ -52,20 +52,27 @@
                 <img src="/images/BgLogin.png" alt="">
             </div>
             <div id="con2" class="inner">
-                <form action="http://localhost:3000/signup" method="post" id="form">
+                <form id="form">
                     <h1>Welcome!</h1>
+                    <p id="invalid" class="errors">Email or Phone already exists.</p>
                     <label for="firstName"></label>
                     <input required id="firstName" name="firstName" type="text" placeholder="First Name*">
+                    <p id="validFName" class="errors">Please enter a valid first name.</p>
                     <label for="lastName"></label>
                     <input required id="lastName" name="lastName" type="text" placeholder="Last Name*">
+                    <p id="validLName" class="errors">Please enter a valid last name.</p>
                     <label for="email"></label>
                     <input required id="email" name="email" type="email" placeholder="E-mail*">
+                    <p id="validEmail" class="errors">Please enter a valid email address.</p>
                     <label for="phone"></label>
                     <input required id="phone" name="phone" type="phone" placeholder="Phone*">
+                    <p id="validPhone" class="errors">Please enter a valid phone number.</p>
                     <label for="password"></label>
                     <input required id="password" name="password" type="password" placeholder="Password*">
+                    <p id="validPassword" class="errors">Password must be greater than 8 characters.</p>
                     <label for="confirm"></label>
                     <input required id="confirm" name="confirm" type="password" placeholder="Confirm Password*">
+                    <p id="validConfPassword" class="errors">Passwords do not match.</p>
                     <div class="show">
                         <i id="chk1" class="fa fa-regular fa-square" style="color: black;"></i>
                         <i id="chk2" class="fa fa-regular fa-square-check" style="color: black;"></i>
@@ -82,4 +89,5 @@
 </body>
 
 <script src="/css/SignUpPage.js"></script>
+
 </html>

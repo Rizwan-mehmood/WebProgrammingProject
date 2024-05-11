@@ -3,6 +3,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize("shopex", "root", "riz12wan@", {
   host: "localhost",
   dialect: "mysql",
+  logging: false,
 });
 
 sequelize

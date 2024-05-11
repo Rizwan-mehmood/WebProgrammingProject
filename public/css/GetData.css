@@ -14,13 +14,18 @@ body {
 
 #container {
     width: 70%;
-    height: 400px;
+    height: 500px;
     background-color: white;
     border-radius: 15px;
     display: flex;
     justify-content: center;
 }
-
+.errors
+{
+    color: red;
+    margin: 0;
+    display: none;
+}
 h1 {
     display: flex;
     align-items: center;

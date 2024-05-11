@@ -52,12 +52,16 @@
                 <img src="/images/BgLogin.png" alt="">
             </div>
             <div id="con2" class="inner">
-                <form action="http://localhost:3000/login" method="post" id="form">
+                <form id="form">
                     <h1>Welcome Back!</h1>
+                    <p id="exists" class="valid">Email already exists. Please Login.</p>
+                    <p id="invalid" class="valid">Invalid Email or Password.</p>
                     <label for="email"></label>
                     <input required type="email" name="email" id="email" placeholder="E-mail">
+                    <p id="validEmail" class="valid">Please Enter a valid Email Address.</p>
                     <label for="password"></label>
                     <input required type="password" name="password" id="password" placeholder="Password">
+                    <p id="validPassword" class="valid">Password Length must be greater than 8.</p>
                     <div>
                         <div class="show">
                             <i id="chk1" class="fa fa-regular fa-square" style="color: black;"></i>

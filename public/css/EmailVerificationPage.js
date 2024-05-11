@@ -1,16 +1,10 @@
 document.getElementById("verificationForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
 
     const codeInput = document.getElementById("code");
     const code = codeInput.value.trim();
-
-    if (!code) {
-        alert("Please enter your code.");
-        codeInput.focus();
-        return;
-    }
-    if (code.length !== 6) {
-        alert("Code must have 6 characters.");
+    if (code.length !== 6 || isNaN(code)) {
+        document.querySelector('#check>p').style.display = 'block';
         codeInput.focus();
         return;
     }
@@ -24,11 +18,13 @@ document.getElementById("verificationForm").addEventListener("submit", function 
     })
         .then(response => response.json())
         .then(data => {
-            if (data.error === "Code expired") {
-                alert("Code has expired. Please try again.");
-                window.location.href = "/LoginPage.html";
-            } else {
-                console.log("Verification successful.");
+            if (data.error && data.error === "Code expired.") {
+                document.querySelector("#check>p:nth-child(2)").style.display = 'block'
+            } else if (data.success && data.success == "Success") {
+                document.querySelector("#check>p:nth-child(3)").style.display = 'block'
+            }
+            else if (data.error && data.error == "Incorrect code.") {
+                document.querySelector("#check>p:nth-child(4)").style.display = 'block'
             }
         })
         .catch(error => {
@@ -37,3 +33,12 @@ document.getElementById("verificationForm").addEventListener("submit", function 
         });
 
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('code');
+    const validCode = document.getElementById('validCode');
+    const invalidCode = document.getElementById('incorrect');
+
+    input.addEventListener('input', function () {
+        validCode.style.display = invalidCode.style.display = 'none';
+    });
+})

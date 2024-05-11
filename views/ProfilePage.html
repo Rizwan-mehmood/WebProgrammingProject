@@ -1,113 +1,227 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/images/Logo.jpg">
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="/css/ProfilePage.css">
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        integrity="sha384-dVXBV1ouKrlv9fPoU4K6Dk3rOv8AhrFOpi2juGk8X0s63PMAntQvOv9qfmKiuOeW" crossorigin="anonymous">
-    <title>ShopEx - Profile Page</title>
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>ShopEx - </title>
+    <link rel="icon" type="image/png" href="/images/Logo.jpg">
 </head>
 
 <body>
-    <nav>
-        <div id="Logo" onclick="Landing()">
-            <img src="/images/Logo.jpg" alt="Logo">
-            <h1>ShopEx</h1>
-        </div>
-        <div id="Search" class="search">
-            <input type="text" placeholder="Search Product...">
+    <header>
+        <div id="h1">
+            <h1 onclick="Landing()"><img style="margin-bottom: 7px; margin-right: 5px; width: 35px"
+                    src="/images/Logo.jpg" alt="Logo">ShopEx</h1>
             <div>
-                <i class="fa fa-search"></i>
-            </div>
-        </div>
-        <div id="accounts">
-            <div id="a2">
-                <i class="fa fa-shopping-cart"></i>
-                <p>Cart</p>
-            </div>
-            <div id="a1">
-                <div id="a11">
-                    <p id="acc"></p>
-                    <img id="profilePic" style="display: none;" src="" alt="Error showing image">
+                <span style="margin-right: 10px;">Name</span>
+                <div>
+                    <h1 id="h1_h1"></h1>
+                    <img id="h1_img" class="uploadedImage" src="" alt="Profile Pic">
                 </div>
             </div>
         </div>
-    </nav>
-    <hr>
-    <div id="container">
-        <div id="chngpass">
-            <i class="fa fa-light fa-unlock-keyhole"></i>
-            <a>Change Password</a>
-        </div>
-        <hr>
-        <div id="logout">
-            <button onclick="logout()">Logout<i class="fa-solid fa-right-from-bracket"></i></button>
-        </div>
-    </div>
-    <div id="info">
-        <div id="text">
-            <div id="one">
+    </header>
+    <main style="display: none;" id="m1">
+        <section id="sec2">
+            <div id="head">
+                <h1>Dashborad</h1>
                 <div>
-                    <p>First Name:</p>
-                </div>
-                <div>
-                    <p>Last Name:</p>
-                </div>
-                <div>
-                    <p>Email:</p>
-                </div>
-                <div>
-                    <p>Phone:</p>
-                </div>
-                <div>
-                    <p>Bio:</p>
+                    <hr>
                 </div>
             </div>
-            <div id="two">
-                <div>
-                    <p></p>
+            <div id="container">
+                <div id="pic">
+                    <div onclick="chooseFile1()">
+                        <h1 id="pic_h1"></h1>
+                        <img id="pic_img" onclick="chooseFile()" src="" alt="Profile Picture">
+                    </div>
+                    <div id="change">
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
                 </div>
-                <div>
-                    <p></p>
+                <div id="nameLoc">
+                    <h1>Name</h1>
+                    <div>
+                        <p>Loc</p>
+                    </div>
                 </div>
-                <div>
-                    <p></p>
+                <div style="width: 100%; height: 70px">
+                    <div id="social">
+                        <a target="_blank" href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a target="_blank" href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a target="_blank" href="#"><i class="fa-brands fa-github"></i></a>
+                    </div>
                 </div>
-                <div>
-                    <p></p>
+                <div id="rating">
+                    <p>Ratings: </p>
                 </div>
-                <div>
-                    <textarea></textarea>
+                <div id="edit">
+                    <button onclick="EditProfile()">Edit Profile</button>
+                </div>
+                <div id="orders">
+                    <div id="o1">
+                        <h6>Orders Completed</h6>
+                        <h1></h1>
+                    </div>
+                    <div id="o2">
+                        <h6>Orders In Progress</h6>
+                        <h1></h1>
+                    </div>
                 </div>
             </div>
+        </section>
+        <section id="sec3"></section>
+        <section id="sec4">
+            <div id="sec41">
+                <h4>Education</h4>
+            </div>
+        </section>
+        <section id="sec5">
+            <div id="sec51">
+                <h4>Work History</h4>
+            </div>
+        </section>
+        <section id="sec6">
+            <div id="sec61">
+                <h4>Skills</h4>
+            </div>
+        </section>
+    </main>
+    <main style="display: block;" id="m2">
+        <div id="dashboard">
+            <i class="fa-solid fa-chevron-left"></i>
+            <button style="padding-bottom: 2.5px; margin-left: 5px" onclick="dashboard()">DashBoard</button>
         </div>
-        <div id="pic">
-            <img src="" onclick="replaceImage()" alt="Uploaded Image" id="uploadedImage" style="display: none;">
-            <button id="choosebutton" onclick="replaceImage()" style="display: none;">Choose Image</button>
-        </div>
-    </div>
-    <div id="buttons">
-        <button id="save">Save</button>
-        <button id="cancel">Cancel</button>
-        <button id="edit">Edit</button>
-    </div>
-    <div id="overlay"></div>
-    <div id="passwordUpdate">
-        <input id="oldPass" type="password" placeholder="Old Password">
-        <input id="newPass" type="password" placeholder="New Password">
-        <input id="confPass" type="password" placeholder="Confirm Password">
-        <div>
-            <i class="fa-regular fa-square"></i>
-            <i style="display: none;" class="fa-regular fa-square-check"></i>
-            <span>Show Password</span>
-        </div>
-        <button onclick="resetPassword()" id="resetPassword">Change Password</button>
-    </div>
+        <section id="sec1">
+            <div style="border-top-right-radius: 10px; background-color: rgb(90, 25, 152);" id="personal">
+                <i class="fa-solid fa-circle-user"></i>
+                <h6>Personal Information</h6>
+            </div>
+            <div id="education">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h6>Education</h6>
+            </div>
+            <div id="workHistory">
+                <i class="fa-solid fa-building"></i>
+                <h6>Work History</h6>
+            </div>
+            <div style="border-bottom-right-radius: 10px" id="skills">
+                <i class="fa-solid fa-lightbulb"></i>
+                <h6>Skills</h6>
+            </div>
+        </section>
+        <section id="sec7">
+            <h4>Name:</h4>
+            <label for="firstname">First Name:</label>
+            <input id="firstName" type="text" value="">
+            <label for="lastname">Last Name:</label>
+            <input id="lastName" type="text" value="">
+            <h4>Location:</h4>
+            <label for="country">Country:</label>
+            <input id="country" type="text" value="">
+            <label for="city">City</label>
+            <input id="city" type="text" value="">
+            <h4>Social Links:</h4>
+            <label for="facebook">Facebook:</label>
+            <input id="facebook" type="text" style="width: 600px;" value=""><br><br>
+            <label for="linkedin" style="padding-left: 8px;">LinkedIn:</label>
+            <input id="linkedin" type="text" style="width: 600px;" value=""><br><br>
+            <label for="github" style="padding-left: 16px;">GitHub:</label>
+            <input id="github" type="text" style="width: 600px;" value="">
+            <button onclick="reload()" id="cancelbtn" class="cancel">Cancel</button>
+            <button onclick="saveInUserData()" id="savebtn" class="save">Save</button>
+        </section>
+        <section style="display: block;" id="sec8">
+            <div id="sec81">
+                <div>
+                    <p>+</p>
+                </div>
+            </div>
+            <div class="sections">
+                <div id="sections1">
+                    <p>10-10-2010</p>
+                    <p style="width: 2px; height: 30px; background-color: black; border-radius: 5px;"></p>
+                    <p>10-10-2010</p>
+                </div>
+                <div id="sections2">
+                    <h5>National University of Computer and Emerging Sciences</h5>
+                    <p><b>Degree:</b> BS, Computer Science</p>
+                    <p><b>Location:</b> Faisalabad, Pakistan</p>
+                    <p><b>Obtained Marks:</b> 1100</p>
+                </div>
+                <div id="sections3">
+                    <div onclick="deleteParent()"">
+                        <i class=" fa fa-trash"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="sec9">SEC9</section>
+        <section id="sec10">SEC10</section>
+        <form id="edu">
+            <section id="sec11">
+                <div style="top: 3%; left: 5%">
+                    <p>Institute Name</p>
+                    <input required style="width: 60%" type="text" id="instituteName" name="instituteName"
+                        placeholder="e.g.(National University of Computer and Emerging Sciences)">
+                </div>
+                <div class="two" style="top: 20%; left: 5%; width: 50%">
+                    <div>
+                        <p>Degree Name</p>
+                        <input required type="text" id="degreeName" name="degreeName" placeholder="e.g.(BS)">
+                    </div>
+                    <div>
+                        <p>Field Of Study</p>
+                        <input required type="text" id="major" name="major" placeholder="e.g.(Computer Science)">
+                    </div>
+                </div>
+                <div class="two" style="top: 37%; left: 5%; width: 35%">
+                    <div>
+                        <p>Start Date</p>
+                        <input required type="date" id="startDate" name="startDate">
+                    </div>
+                    <div>
+                        <p>End Date</p>
+                        <input required type="date" id="endDate" name="endDate">
+                    </div>
+                </div>
+                <div style="top: 53%; left: 5%">
+                    <p>Location</p>
+                    <input required type="text" id="country" name="location" placeholder="Country">
+                    <input required type="text" id="city" name="location" placeholder="City">
+                </div>
+                <div style="top: 70%; left: 5%">
+                    <p>Obtained Marks</p>
+                    <input required type="number" id="marks" name="marks" placeholder="1100">
+                </div>
+                <div style="top: 88%; left: 85%">
+                    <button onclick="addEducation()">Add</button>
+                </div>
+            </section>
+        </form>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script src="/css/ProfilePage.js"></script>
 
 </html>

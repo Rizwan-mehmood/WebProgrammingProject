@@ -8,7 +8,10 @@ const User = sequelize.define("User", {
     type: DataTypes.STRING,
     unique: true,
   },
-  phone: DataTypes.STRING,
+  phone: {
+    type: DataTypes.STRING,
+    unique: true,
+  },
   bio: DataTypes.STRING,
   image_path: DataTypes.STRING,
   password: DataTypes.STRING,
