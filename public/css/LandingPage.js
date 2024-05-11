@@ -164,6 +164,5 @@ account.addEventListener("click", function () {
 
 function google() {
   console.log("google");
-  // Redirect the user to Google authentication page
   window.location.href = "/auth/google";
 }

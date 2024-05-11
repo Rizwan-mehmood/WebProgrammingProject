@@ -34,38 +34,112 @@ document.getElementById("form").addEventListener("submit", function (event) {
     const phone = phoneInput.value.trim();
     const password = passwordInput.value.trim();
     const confirmPassword = confirm.value.trim();
+    let flag = false;
     if (!isValidName(firstName)) {
-        alert("Please enter a valid first name.");
+        document.getElementById('validFName').style.display = 'block';
         firstNameInput.focus();
-        return false;
+        flag = true;
     }
     if (!isValidName(lastName)) {
-        alert("Please enter a valid last name.");
-        firstNameInput.focus();
-        return false;
+        document.getElementById('validLName').style.display = 'block';
+        lastNameInput.focus();
+        flag = true;
     }
     if (!isValidEmail(email)) {
-        alert("Please enter a valid email address.");
+        document.getElementById('validEmail').style.display = 'block';
         emailInput.focus();
-        return false;
+        flag = true;
     }
     if (!isValidPhone(phone)) {
-        alert("Please enter a valid phone number.");
+        document.getElementById('validPhone').style.display = 'block';
         phoneInput.focus();
-        return false;
+        flag = true;
     }
     if (password.length < 8) {
-        alert("Password must be at least 8 characters long.");
+        document.getElementById('validPassword').style.display = 'block';
         passwordInput.focus();
-        return false;
+        flag = true;
     }
     if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        passwordInput.focus();
-        return false;
+        document.getElementById('validConfPassword').style.display = 'block';
+        confirm.focus();
+        flag = true;
     }
-    this.submit();
+    if (flag) {
+        return;
+    }
+    fetch('/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            password: password,
+        })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Couldn't get Data from server.")
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error && data.error == "User exists.") {
+                document.getElementById("invalid").style.display = "block";
+                return;
+            }
+            if (data.success && data.success == "User created successfully") {
+                window.location.href = "/EmailVerificationPage.html"
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("An error occurred, please try again later.");
+        });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const firstName = document.getElementById('firstName');
+    const lastName = document.getElementById('lastName');
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("confirm");
+
+    firstName.addEventListener("input", function () {
+        document.getElementById("validFName").style.display = "none";
+        document.getElementById("invalid").style.display = "none";
+    });
+
+    lastName.addEventListener("input", function () {
+        document.getElementById("validLName").style.display = "none";
+        document.getElementById("invalid").style.display = "none";
+    });
+
+    emailInput.addEventListener("input", function () {
+        document.getElementById("validEmail").style.display = "none";
+        document.getElementById("invalid").style.display = "none";
+    });
+
+    phoneInput.addEventListener("input", function () {
+        document.getElementById("validPhone").style.display = "none";
+        document.getElementById("invalid").style.display = "none";
+    });
+
+    passwordInput.addEventListener("input", function () {
+        document.getElementById("validPassword").style.display = "none";
+        document.getElementById("invalid").style.display = "none";
+    });
+
+    confirmPasswordInput.addEventListener("input", function () {
+        document.getElementById("validConfPassword").style.display = "none";
+        document.getElementById("invalid").style.display = "none";
+    });
+});
+
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);

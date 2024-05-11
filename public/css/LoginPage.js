@@ -1,4 +1,9 @@
 let drop = document.querySelector("#icon>i");
+const params = new URLSearchParams(window.location.search);
+    const userExists = params.get('userExists');
+    if (userExists === 'true') {
+      document.getElementById("exists").style.display = "block";
+    }
 drop.addEventListener("click", function () {
     let overlay = document.getElementById("overlay")
     overlay.style.display = overlay.style.display == "block" ? "none" : "block";
@@ -26,30 +31,65 @@ document.getElementById("form").addEventListener("submit", function (event) {
     const passwordInput = document.getElementById("password");
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
-    if (!email) {
-        alert("Please enter your email.");
-        emailInput.focus();
-        return false;
-    }
-
+    let flag = false;
     if (!isValidEmail(email)) {
-        alert("Please enter a valid email address.");
+        document.getElementById("validEmail").style.display = "block";
         emailInput.focus();
-        return false;
-    }
-
-    if (!password) {
-        alert("Please enter your password.");
-        passwordInput.focus();
-        return false;
+        flag = true;
     }
     if (password.length < 8) {
-        alert("Password must be at least 8 characters long.");
+        document.getElementById("validPassword").style.display = "block";
         passwordInput.focus();
-        return false;
+        flag = true;
     }
-    this.submit();
+    if (flag) {
+        return;
+    }
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password,
+        })
+    }
+    )
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Couldn't get Data from server.")
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error && data.error == "Invalid credentials") {
+                document.getElementById("invalid").style.display = "block";
+                return;
+            }
+            window.location.href = `/ProfilePage.html?data=${encodeURIComponent(JSON.stringify(data.userData))}`;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+
+    emailInput.addEventListener("input", function () {
+        document.getElementById("validEmail").style.display = "none";
+        document.getElementById("invalid").style.display = "none";
+        document.getElementById("exists").style.display = "none";
+    });
+
+    passwordInput.addEventListener("input", function () {
+        document.getElementById("validPassword").style.display = "none";
+        document.getElementById("invalid").style.display = "none";
+        document.getElementById("exists").style.display = "none";
+    });
+});
+
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);

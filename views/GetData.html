@@ -23,19 +23,25 @@
             <h3>Please fill out your details to continue</h3>
         </div>
         <div id="sec2">
-            <form action="http://localhost:3000/AddUser" method="post" id="form">
+            <form id="form">
                 <label for="fname"></label>
-                <input id="fname" name="fname" type="text" placeholder="FirstName*">
+                <input required id="fname" name="fname" type="text" placeholder="FirstName*">
                 <label for="lname"></label>
-                <input id="lname" name="lname" type="text" placeholder="LastName*">
+                <input required id="lname" name="lname" type="text" placeholder="LastName*">
+                <p id="validName" class="errors">Please enter a valid firstname or lastname.</p>
                 <label for="email"></label>
-                <input style="width: 300px;" id="email" name="email" type="email" placeholder="Email*"><br>
+                <input required style="width: 300px;" id="email" name="email" type="email" placeholder="Email*">
+                <p id="validEmail" class="errors">Please enter a valid email.</p>
                 <label for="phone"></label>
-                <input id="phone" name="phone" type="text" placeholder="Phone*"><br>
+                <input required id="phone" name="phone" type="text" placeholder="Phone*">
+                <p id="validPhone" class="errors">Please enter a valid phone number.</p>
+                <p id="exists" class="errors">Phone number already exists.</p><br>
                 <label for="password"></label>
-                <input id="password" name="password" type="password" placeholder="Password*">
+                <input required id="password" name="password" type="password" placeholder="Password*">
                 <label for="confirm"></label>
-                <input id="confirm" name="confirm" type="password" placeholder="Confirm Password*">
+                <input required id="confirm" name="confirm" type="password" placeholder="Confirm Password*">
+                <p id="validPassword" class="errors">Password length must be greater than 8 characters.</p>
+                <p id="match" class="errors">Passwords do not match.</p>
                 <div id="show">
                     <i id="chk1" class="fa fa-regular fa-square" style="color: black;"></i>
                     <i id="chk2" class="fa fa-regular fa-square-check" style="color: black;"></i>
@@ -49,14 +55,6 @@
     </div>
 </body>
 <script>
-    const queryString = window.location.search;
-    const urlParams1 = new URLSearchParams(queryString);
-    let firstName = urlParams1.get("firstName");
-    let lastName = urlParams1.get("lastName");
-    let email = urlParams1.get("email");
-    document.getElementById("fname").value = firstName;
-    document.getElementById("lname").value = lastName;
-    document.getElementById("email").value = email.slice(0, -1);
     document.addEventListener("DOMContentLoaded", function () {
         const queryString = window.location.search;
         const urlParams1 = new URLSearchParams(queryString);
@@ -75,31 +73,58 @@
         var phone = document.getElementById("phone").value;
         var password = document.getElementById("password").value;
         var confirm = document.getElementById("confirm").value;
+        let flag = false;
         if (!/^[a-zA-Z]+$/.test(fname)) {
-            alert("First Name cannot be a number");
-            return;
+            document.getElementById("validName").style.display = "block";
+            flag = true;
         }
         if (!/^[a-zA-Z]+$/.test(lname)) {
-            alert("Last Name cannot be a number");
-            return;
+            document.getElementById("validName").style.display = "block";
+            flag = true;
         }
         if (!isValidEmail(email)) {
-            alert("Please enter a valid email");
-            return;
+            document.getElementById("validEmail").style.display = "block";
+            flag = true;
         }
         if (!isValidPhone(phone)) {
-            alert("Please enter a valid phone number");
-            return;
+            document.getElementById("validPhone").style.display = "block";
+            flag = true;
         }
         if (password.length < 8) {
-            alert("Password must be at least 8 characters");
-            return;
+            document.getElementById("validPassword").style.display = "block";
+            flag = true;
         }
         if (password != confirm) {
-            alert("Passwords do not match");
+            document.getElementById("match").style.display = "block";
+            flag = true;
+        }
+        if (flag) {
             return;
         }
-        this.submit();
+        fetch('/AddUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                fname: fname,
+                lname: lname,
+                email: email,
+                phone: phone,
+                password: password,
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('exists').style.display = 'block';
+                    return;
+                }
+                window.location.href = `/ProfilePage.html?data=${encodeURIComponent(JSON.stringify(data.userData))}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     });
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
@@ -122,6 +147,32 @@
         m.style.display = "block";
         document.getElementById("password").type = "password";
         document.getElementById("confirm").type = "password";
+    });
+    const fname = document.getElementById("fname");
+    const lname = document.getElementById("lname");
+    const email = document.getElementById("email");
+    const phone = document.getElementById("phone");
+    const password = document.getElementById("password");
+    const confirm = document.getElementById("confirm");
+    let flag = false;
+    fname.addEventListener('input', function () {
+        document.getElementById('validName').style.display = 'none';
+    });
+    lname.addEventListener('input', function () {
+        document.getElementById('validName').style.display = 'none';
+    });
+    email.addEventListener('input', function () {
+        document.getElementById('validEmail').style.display = 'none';
+    });
+    phone.addEventListener('input', function () {
+        document.getElementById('validPhone').style.display = 'none';
+        document.getElementById('exists').style.display = 'none';
+    });
+    password.addEventListener('input', function () {
+        document.getElementById('validPassword').style.display = 'none';
+    });
+    confirm.addEventListener('input', function () {
+        document.getElementById('match').style.display = 'none';
     });
 
 </script>
