@@ -212,7 +212,7 @@ function google() {
   console.log("google");
   window.location.href = "/auth/google";
 }
-
+let paginationData;
 function search() {
   const input = document.querySelector('#searchInTable>input').value;
   if (input) {
@@ -232,14 +232,48 @@ function search() {
         return response.json();
       })
       .then(data => {
-        
+        paginationData = data.searchData;
+        for (let i = 0; i < data.searchData.length; i++) {
+          const div = document.createElement("div");
+          div.innerHTML =
+            `<p>${data.searchData[i].ProductName}</p>
+              <p>${data.searchData[i].ProductPrice}$</p>
+              <p>${data.searchData[i].ProductQuantity}</p>`;
+          document.getElementById("result").appendChild(div);
+        }
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
       });
   }
 }
-
-document.querySelector("#searchInTable>input").addEventListener('input', function () {
-  search();
+const result = document.getElementById("result");
+const value = document.querySelector("#searchInTable>input");
+value.addEventListener('input', function () {
+  while (result.firstChild) {
+    result.removeChild(result.firstChild);
+  }
+  if (value.value == "") {
+    result.style.display = "none";
+  }
+  else {
+    search();
+    result.style.display = "flex";
+  }
+});
+const form = document.getElementById('searchInTable');
+form.addEventListener('submit', function (event) {
+  gotoPagination();
 })
+function gotoPagination() {
+  // fetch('/gotoPagination', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({
+  //     paginationData: paginationData
+  //   })
+  // });
+  window.location.href = `/Pagination.html?value=${encodeURIComponent(JSON.stringify({ value: value.value }))}`;
+}

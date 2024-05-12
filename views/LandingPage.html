@@ -30,12 +30,14 @@
                 <h1>ShopEx</h1>
             </div>
             <div id="Search" class="search">
-                <form id="searchInTable">
+                <form id="searchInTable" onsubmit="gotoPagination()">
                     <input required type="text" placeholder="Search Product...">
-                <div>
-                    <i class="fa fa-search"></i>
-                </div>
+                    <div onclick="gotoPagination()">
+                        <i class="fa fa-search"></i>
+                    </div>
                 </form>
+            </div>
+            <div id="result">
             </div>
             <div id="accounts">
                 <div id="a1">
@@ -54,10 +56,12 @@
             <p href="#">Logout</p>
         </div>
         <div id="outer" class="search">
-            <input type="text" placeholder="Search Product...">
-            <div>
-                <i class="fa fa-search"></i>
-            </div>
+            <form id="searchInTable" onsubmit="gotoPagination()">
+                <input required type="text" placeholder="Search Product...">
+                <div onclick="gotoPagination()">
+                    <i class="fa fa-search"></i>
+                </div>
+            </form>
         </div>
         <hr>
         <section id="one">

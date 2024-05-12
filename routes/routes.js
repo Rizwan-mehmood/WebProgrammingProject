@@ -642,4 +642,8 @@ router.post('/getUserData', async (req, res) => {
     res.status(500).send("Error querying database");
   }
 });
+router.post('/fetchProducts', async (req, res) => {
+  const data = await DummyData.findAll({});
+  res.status(200).json(data);
+});
 module.exports = router;

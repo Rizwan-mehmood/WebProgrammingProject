@@ -117,8 +117,8 @@ nav {
     margin: 0;
     padding: 3px;
 }
-#profile
-{
+
+#profile {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -132,24 +132,25 @@ nav {
     z-index: 100;
     display: none;
 }
-#profile p
-{
+
+#profile p {
     text-decoration: none;
     color: black;
     margin: 10px 0;
 }
-#profile p:hover
-{
+
+#profile p:hover {
     color: rgba(0, 0, 0, 0.474);
     cursor: pointer;
 }
-#a1 img
-{
+
+#a1 img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     display: none;
 }
+
 .search {
     display: flex;
     align-items: center;
@@ -190,11 +191,44 @@ nav {
     color: black;
     cursor: pointer;
 }
-#searchInTable
-{
+
+#searchInTable {
     display: flex;
 }
 
+#result {
+    position: absolute;
+    top: 8%;
+    left: 33%;
+    width: 500px;
+    height: 200px;
+    z-index: 101;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    display: none;
+}
+
+#result div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin: 5px 0;
+    height: 60px;
+    border-radius: 10px;
+    padding: 5px;
+}
+#result p:first-child
+{
+    width: 40%;
+}
 #Logo {
     display: flex;
     align-items: center;
