@@ -6,7 +6,7 @@ header {
     width: 100%;
     height: 70px;
     background-color: white;
-    z-index: 100;
+    z-index: 101;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -69,6 +69,112 @@ header {
     font-weight: 500;
 }
 
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: none;
+}
+
+#logout {
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    width: 200px;
+    height: 150px;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 101;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+#logout p {
+    text-decoration: none;
+    color: black;
+}
+
+#logout p:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.434);
+}
+
+#logout button {
+    border: none;
+    width: 100px;
+    height: 35px;
+    color: white;
+    background-color: blueviolet;
+    border-radius: 50px;
+}
+
+#logout button:hover {
+    background-color: rgb(90, 25, 152);
+}
+
+#changePassword {
+    position: fixed;
+    top: 30%;
+    left: 35%;
+    width: 500px;
+    height: 300px;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 101;
+    overflow-y: auto;
+    display: none;
+}
+
+#changePassword>div {
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+#password {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#password div {
+    margin: 15px 0;
+}
+
+#password button {
+    width: 100px;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+#password button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+#password p
+{
+    color: red;
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+
+#password input {
+    margin: 10px 0;
+    width: 250px;
+    padding-left: 10px;
+}
+
 #menu {
     height: 60px;
     width: 80px;
@@ -78,6 +184,10 @@ header {
     border-top-right-radius: 10px;
     background-color: blueviolet;
     color: white;
+}
+
+#h1_img:hover {
+    cursor: pointer;
 }
 
 #icon {
@@ -308,6 +418,7 @@ header {
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: white;
+    overflow-y: auto;
 }
 
 #sec41,
@@ -342,6 +453,38 @@ header {
     border-radius: 20px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sec6skills {
+    border: 1px solid black;
+    width: 90%;
+    height: 70px;
+    margin: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+}
+
+#sec6sk1,
+#sec6sk2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+#sec6sk1 h6,
+#sec6sk2 h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+#sec6sk1 p,
+#sec6sk2 p {
+    margin: 0;
+    padding: 0;
 }
 
 #sec41 h4,
@@ -486,7 +629,8 @@ header {
 #sec8,
 #sec9,
 #sec10,
-#sec11 {
+#sec11,
+#sec12 {
     display: block;
     width: 1000px;
     height: 420px;
@@ -499,16 +643,19 @@ header {
     display: none;
 }
 
-#sec8 {
+#sec8,
+#sec10 {
     overflow-y: auto;
 }
 
-#sec81 {
+#sec81,
+#sec101 {
     height: 50px;
     width: 97%;
 }
 
-#sec81 div {
+#sec81 div,
+#sec101 div {
     background-color: #cccccc45;
     width: 40px;
     height: 40px;
@@ -520,12 +667,14 @@ header {
     margin-top: 10px;
 }
 
-#sec81 div:hover {
+#sec81 div:hover,
+#sec101 div:hover {
     cursor: pointer;
     background-color: #cccccc;
 }
 
-#sec81 div p {
+#sec81 div p,
+#sec101 div p {
     margin: 0;
     padding: 0;
     font-size: 30px;
@@ -560,17 +709,18 @@ header {
     padding-left: 10px;
     padding-top: 10px;
 }
-#sections2 h5
-{
+
+#sections2 h5 {
     margin: 0;
     padding: 0;
 }
-#sections2 p
-{
+
+#sections2 p {
     font-size: 14px;
     margin: 0;
     padding: 0;
 }
+
 #sections3 {
     width: 10%;
     border-left: 1px solid black;
@@ -603,11 +753,13 @@ header {
     height: 450px;
 }
 
-#sec11 input {
+#sec11 input,
+#sec12 input {
     padding-left: 5px;
 }
 
-#sec11 p {
+#sec11 p,
+#sec12 p {
     margin-bottom: 5px;
     margin-top: 10px;
     font-weight: bold;
@@ -631,4 +783,96 @@ header {
     border-radius: 10px;
     color: white;
     background-color: green;
+}
+
+
+#sec12 {
+    top: 30%;
+    left: 40%;
+    width: 400px;
+    height: 200px;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+
+#sec12 input {
+    width: 80%;
+}
+
+#sec12 button {
+    position: absolute;
+    top: 110%;
+    left: 40%;
+    border: none;
+    color: white;
+    background-color: green;
+    width: 70px;
+    height: 35px;
+    border-radius: 10px;
+}
+
+.Skills {
+    width: 60%;
+    height: 60px;
+    border: 1px solid black;
+    margin: 20px 20%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+}
+
+#skills1 {
+    width: 90%;
+    height: 100%;
+    border-right: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sk1,
+#sk2 {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#sk1 p,
+#sk2 p,
+#sk1 h6,
+#sk2 h6 {
+    margin: 0;
+    padding: 0;
+}
+
+#sk1 h6,
+#sk2 h6 {
+    font-weight: bold;
+}
+
+#skills2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 10%;
+}
+
+#skills2 div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #cccc;
+}
+
+#skills2 div:hover {
+    background-color: #8080808c;
+    cursor: pointer;
 }

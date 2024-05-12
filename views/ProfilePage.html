@@ -32,10 +32,33 @@
             </div>
         </div>
     </header>
-    <main style="display: none;" id="m1">
+    <div id="overlay"></div>
+    <div id="logout">
+        <p><i style="margin-right: 5px;" class="fa fa-lock"></i>Change Password</p>
+        <button><i style="margin-right: 5px;" class="fa-solid fa-power-off"></i>Logout</button>
+    </div>
+    <div id="changePassword">
+        <div>
+            <h3>Change Password</h3>
+        </div>
+        <form id="password">
+            <p>Password Updated Successfully!</p>
+            <input required type="password" name="oldPassword" id="oldPassword" placeholder="Old Password">
+            <p>Incorrect Old Password.</p>
+            <input required type="password" name="newPassword" id="newPassword" placeholder="New Password">
+            <p>Password must be 8 characters long.</p>
+            <input required type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+            <p>Passwords do not match.</p>
+            <div>
+                <button style="background-color: red;" onclick="reload()" id="Cancel">Cancel</button>
+                <button type="submit" style="background-color: green;" id="Save">Save</button>
+            </div>
+        </form>
+    </div>
+    <main id="m1">
         <section id="sec2">
             <div id="head">
-                <h1>Dashborad</h1>
+                <h1>Dashboard</h1>
                 <div>
                     <hr>
                 </div>
@@ -87,18 +110,13 @@
                 <h4>Education</h4>
             </div>
         </section>
-        <section id="sec5">
-            <div id="sec51">
-                <h4>Work History</h4>
-            </div>
-        </section>
         <section id="sec6">
             <div id="sec61">
                 <h4>Skills</h4>
             </div>
         </section>
     </main>
-    <main style="display: block;" id="m2">
+    <main id="m2">
         <div id="dashboard">
             <i class="fa-solid fa-chevron-left"></i>
             <button style="padding-bottom: 2.5px; margin-left: 5px" onclick="dashboard()">DashBoard</button>
@@ -111,10 +129,6 @@
             <div id="education">
                 <i class="fa-solid fa-graduation-cap"></i>
                 <h6>Education</h6>
-            </div>
-            <div id="workHistory">
-                <i class="fa-solid fa-building"></i>
-                <h6>Work History</h6>
             </div>
             <div style="border-bottom-right-radius: 10px" id="skills">
                 <i class="fa-solid fa-lightbulb"></i>
@@ -142,33 +156,22 @@
             <button onclick="reload()" id="cancelbtn" class="cancel">Cancel</button>
             <button onclick="saveInUserData()" id="savebtn" class="save">Save</button>
         </section>
-        <section style="display: block;" id="sec8">
+        <section id="sec8">
             <div id="sec81">
                 <div>
                     <p>+</p>
                 </div>
             </div>
-            <div class="sections">
-                <div id="sections1">
-                    <p>10-10-2010</p>
-                    <p style="width: 2px; height: 30px; background-color: black; border-radius: 5px;"></p>
-                    <p>10-10-2010</p>
-                </div>
-                <div id="sections2">
-                    <h5>National University of Computer and Emerging Sciences</h5>
-                    <p><b>Degree:</b> BS, Computer Science</p>
-                    <p><b>Location:</b> Faisalabad, Pakistan</p>
-                    <p><b>Obtained Marks:</b> 1100</p>
-                </div>
-                <div id="sections3">
-                    <div onclick="deleteParent()"">
-                        <i class=" fa fa-trash"></i>
-                    </div>
+        </section>
+        <button style="top: 85%" onclick="reload()" id="cancelBtn" class="cancel">Cancel</button>
+        <button style="top: 85%; left: 78%" onclick="saveData()" id="saveBtn" class="save">Save</button>
+        <section id="sec10">
+            <div id="sec101">
+                <div>
+                    <p>+</p>
                 </div>
             </div>
         </section>
-        <section id="sec9">SEC9</section>
-        <section id="sec10">SEC10</section>
         <form id="edu">
             <section id="sec11">
                 <div style="top: 3%; left: 5%">
@@ -198,16 +201,25 @@
                 </div>
                 <div style="top: 53%; left: 5%">
                     <p>Location</p>
-                    <input required type="text" id="country" name="location" placeholder="Country">
-                    <input required type="text" id="city" name="location" placeholder="City">
+                    <input required type="text" id="studyCountry" name="location" placeholder="Country">
+                    <input required type="text" id="studyCity" name="location" placeholder="City">
                 </div>
                 <div style="top: 70%; left: 5%">
                     <p>Obtained Marks</p>
                     <input required type="number" id="marks" name="marks" placeholder="1100">
                 </div>
                 <div style="top: 88%; left: 85%">
-                    <button onclick="addEducation()">Add</button>
+                    <button type="submit">Add</button>
                 </div>
+            </section>
+        </form>
+        <form id="skill">
+            <section id="sec12">
+                <p>Skill</p>
+                <input id="skillName" required type="text" placeholder="e.g.(Web Developer)"><br><br>
+                <p>Experience(in years)</p>
+                <input id="experience" required type="number" placeholder="e.g.(2)">
+                <button type="submit">Add</button>
             </section>
         </form>
     </main>

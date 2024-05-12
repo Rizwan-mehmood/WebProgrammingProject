@@ -7,13 +7,16 @@ const NewUser = require("../models/NewUser");
 const User = require("../models/User");
 const Admin = require("../models/Admin");
 const RandomData = require("../models/RandomData");
+const Education = require("../models/Education");
 const UserData = require("../models/UserData");
+const Skills = require("../models/Skills");
+const DummyData = require("../models/DummyData");
 const multer = require("multer");
 const fs = require("fs");
 const bcrypt = require('bcryptjs');
 const { hash } = require("crypto");
 const { error } = require("console");
-const { Op, where } = require('sequelize');
+const { Sequelize, Op, where } = require('sequelize');
 const { Where } = require("sequelize/lib/utils");
 
 router.use(express.json());
@@ -70,7 +73,22 @@ router.post("/AdminLogin", (req, res) => {
     });
 });
 
-// User login route
+router.post('/searchData', async (req, res) => {
+  const { input } = req.body;
+
+  try {
+    const searchData = await DummyData.findAll({
+      where: {
+        ProductName: { [Sequelize.Op.like]: `%${input}%` }
+      }
+    });
+    const data = JSON.stringify({ searchData: searchData });
+    res.send(data);
+  } catch (error) {
+    console.error('Error executing search query:', error);
+    res.status(500).json({ error: 'An error occurred while searching data' });
+  }
+});
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -119,7 +137,36 @@ router.post("/login", async (req, res) => {
     res.status(500).send("Error in fetching data.");
   }
 });
+router.post('/goToProfile', async (req, res) => {
+  const { email } = req.body;
 
+  try {
+    const user = await User.findOne({ where: { email: email } });
+    const randomData = await RandomData.findAll({ where: { email: email } });
+    const date = [];
+    const completed = [];
+    const rating = [];
+    for (let i = 0; i < randomData.length; i++) {
+      date.push(randomData[i].date);
+      completed.push(randomData[i].completed);
+      rating.push(randomData[i].rating);
+    }
+    const userData = {
+      firstName: user.fname,
+      lastName: user.lname,
+      email: user.email,
+      phone: user.phone,
+      inProgress: Math.floor(Math.random() * 11),
+      date: date,
+      completed: completed,
+      rating: rating,
+    }
+    const data = JSON.stringify({ userData: userData });
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send("Error in fetching data.");
+  }
+});
 router.post("/signup", async (req, res) => {
   const { firstName, lastName, email, phone, password } = req.body;
   const verificationCode = generateVerificationCode();
@@ -344,23 +391,23 @@ router.post("/checkMail", async (req, res) => {
 });
 
 router.post("/resetPassword", async (req, res) => {
-  const { email, oldPass, newPass } = req.body;
-
+  const { email, oldPassword, newPassword } = req.body;
   try {
     const user = await User.findOne({ where: { email: email } });
     if (user) {
-      // Compare the old password with the hashed password
-      const passwordMatch = await bcrypt.compare(oldPass, user.password);
+      const passwordMatch = await bcrypt.compare(oldPassword, user.password);
       if (passwordMatch) {
-        // Hash the new password before saving it
-        const hashedNewPass = await bcrypt.hash(newPass, 10); // 10 is the salt rounds
+        const hashedNewPass = await bcrypt.hash(newPassword, 10);
         await user.update({ password: hashedNewPass });
-        res.sendStatus(200);
+        const data = JSON.stringify({ success: 'Updated successfully' });
+        return res.send(data);
       } else {
-        res.status(401).send("Invalid password");
+        const data = JSON.stringify({ error: 'Invalid Password' });
+        return res.send(data);
       }
     } else {
-      res.status(404).send("User not found");
+      const data = JSON.stringify({ error: 'Invalid Password' });
+      return res.send(data);
     }
   } catch (error) {
     console.error("Error querying database:", error);
@@ -505,30 +552,56 @@ router.post("/randomData", async (req, res) => {
 });
 
 router.post('/saveInUserData', async (req, res) => {
-  const { email, firstName, lastName, country, city, facebook, linkedin, github } = req.body;
+  const { email, array } = req.body;
   try {
     let userData = await UserData.findOne({ where: { email: email } });
-
     if (userData) {
       await userData.update({
-        fname: firstName,
-        lname: lastName,
-        country: country,
-        city: city,
-        facebook: facebook,
-        linkedin: linkedin,
-        github: github,
+        fname: array[0][0][0],
+        lname: array[0][0][1],
+        country: array[0][0][2],
+        city: array[0][0][3],
+        facebook: array[0][0][4],
+        linkedin: array[0][0][5],
+        github: array[0][0][6],
       });
+      await Education.truncate();
+      for (let i = 0; i < array.length; i++) {
+        if (array[i][1][0]) {
+          await Education.create({
+            email: email,
+            instituteName: array[i][1][0],
+            degreeName: array[i][1][1],
+            field: array[i][1][2],
+            startDate: array[i][1][3],
+            endDate: array[i][1][4],
+            studyCountry: array[i][1][5],
+            studyCity: array[i][1][6],
+            marks: array[i][1][7],
+          });
+        }
+      }
+
+      await Skills.truncate();
+      for (let i = 0; i < array.length; i++) {
+        if (array[i][2][0]) {
+          await Skills.create({
+            email: email,
+            skillName: array[i][2][0],
+            experience: array[i][2][1],
+          });
+        }
+      }
     } else {
       await UserData.create({
         email: email,
-        fname: firstName,
-        lname: lastName,
-        country: country,
-        city: city,
-        facebook: facebook,
-        linkedin: linkedin,
-        github: github,
+        fname: array[0][0][0],
+        lname: array[0][0][1],
+        country: array[0][0][2],
+        city: array[0][0][3],
+        facebook: array[0][0][4],
+        linkedin: array[0][0][5],
+        github: array[0][0][6],
       });
     }
 
@@ -543,6 +616,8 @@ router.post('/getUserData', async (req, res) => {
   const { email } = req.body;
   try {
     const user = await UserData.findOne({ where: { email: email } })
+    const educationData = await Education.findAll({ where: { email: email } });
+    const skillsData = await Skills.findAll({ where: { email: email } });
     if (user) {
       const data = JSON.stringify({
         email: user.dataValues.email,
@@ -553,6 +628,8 @@ router.post('/getUserData', async (req, res) => {
         facebook: user.dataValues.facebook,
         linkedin: user.dataValues.linkedin,
         github: user.dataValues.github,
+        educationData: educationData,
+        skillsData: skillsData,
       });
       return res.status(200).send(data);
     }

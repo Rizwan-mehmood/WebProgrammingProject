@@ -10,14 +10,6 @@ const UserData = sequelize.define("UserData", {
     facebook: DataTypes.STRING,
     linkedin: DataTypes.STRING,
     github: DataTypes.STRING,
-    instituteName: DataTypes.STRING,
-    degreeName: DataTypes.STRING,
-    field: DataTypes.STRING,
-    startDate: DataTypes.STRING,
-    endDate: DataTypes.STRING,
-    studyCountry: DataTypes.STRING,
-    studyCity: DataTypes.STRING,
-    marks: DataTypes.STRING,
 });
 
 module.exports = UserData;

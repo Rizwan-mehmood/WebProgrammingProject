@@ -18,10 +18,54 @@ function createCard(imageSrc, title) {
   cardDiv.appendChild(h4);
   return cardDiv;
 }
+const profileImage = localStorage.getItem("profileImage");
+if (profileImage) {
+  document.querySelector('#a1>i').style.display = 'none';
+  document.querySelector('#a1>p').style.display = 'none';
+  document.querySelector('#a1>img').style.display = 'block';
+  document.querySelector('#a1>img').src = profileImage;
+}
+document.querySelector('#a1>img').addEventListener('click', function (e) {
+  const profile = document.getElementById('profile');
+  profile.style.display = profile.style.display == 'flex' ? 'none' : 'flex';
+  profile.style.top = document.querySelector('#a1>img').offsetTop + 45 + 'px';
+  profile.style.left = document.querySelector('#a1>img').offsetLeft - 30 + 'px';
+});
 const cardsContainer = document.getElementById("cardsContainer");
 cardData.forEach((data) => {
   const cardElement = createCard(data.image, data.title);
   cardsContainer.appendChild(cardElement);
+});
+document.querySelector('#profile>p:first-child').addEventListener('click', function () {
+  fetch('/goToProfile', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: localStorage.getItem('email')
+    })
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Couldn't get Data from server.")
+      }
+      return response.json();
+    })
+    .then(data => {
+      window.location.href = `/ProfilePage.html?data=${encodeURIComponent(JSON.stringify(data.userData))}`;
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+});
+document.querySelector('#profile>p:last-child').addEventListener('click', function () {
+  document.querySelector('#a1>i').style.display = 'block';
+  document.querySelector('#a1>p').style.display = 'block';
+  document.querySelector('#a1>img').style.display = 'none';
+  localStorage.removeItem('profileImage');
+  localStorage.removeItem('email');
+  window.location.reload();
 });
 const categoriesData = [
   {
@@ -156,13 +200,46 @@ drop.addEventListener("click", function () {
 });
 let account = document.getElementById("a1");
 account.addEventListener("click", function () {
-  let Account = document.getElementById("Account");
-  Account.style.display = "block flex";
-  let overlay = document.getElementById("overlay");
-  overlay.style.display = overlay.style.display == "block" ? "none" : "block";
+  if (!localStorage.getItem("profileImage")) {
+    let Account = document.getElementById("Account");
+    Account.style.display = "block flex";
+    let overlay = document.getElementById("overlay");
+    overlay.style.display = overlay.style.display == "block" ? "none" : "block";
+  }
 });
 
 function google() {
   console.log("google");
   window.location.href = "/auth/google";
 }
+
+function search() {
+  const input = document.querySelector('#searchInTable>input').value;
+  if (input) {
+    fetch('/searchData', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        input: input
+      })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Couldn't get Data from server.")
+        }
+        return response.json();
+      })
+      .then(data => {
+        
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }
+}
+
+document.querySelector("#searchInTable>input").addEventListener('input', function () {
+  search();
+})
