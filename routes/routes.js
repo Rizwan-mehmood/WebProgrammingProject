@@ -17,7 +17,7 @@ const bcrypt = require('bcryptjs');
 const { hash } = require("crypto");
 const { error } = require("console");
 const { Sequelize, Op, where } = require('sequelize');
-const { Where } = require("sequelize/lib/utils");
+const { Where, Json } = require("sequelize/lib/utils");
 
 router.use(express.json());
 const transporter = nodemailer.createTransport({
@@ -645,5 +645,27 @@ router.post('/getUserData', async (req, res) => {
 router.post('/fetchProducts', async (req, res) => {
   const data = await DummyData.findAll({});
   res.status(200).json(data);
+});
+router.post('/fetchUsers', async (req, res) => {
+  const data = await User.findAll({});
+  res.status(200).json(data);
+});
+router.post('/updateData', async (req, res) => {
+  const { id, ProductName, ProductPrice, ProductQuantity, SellerEmail, SellerName } = req.body;
+  await DummyData.update({
+    ProductName: ProductName,
+    ProductPrice: ProductPrice,
+    ProductQuantity: ProductQuantity,
+    SellerEmail: SellerEmail,
+    SellerName: SellerName,
+  }, { where: { id: id } });
+  const data = JSON.stringify("Updated");
+  res.sendStatus(200).send(data);
+});
+router.post('/deleteData', async (req, res) => {
+  const { id } = req.body;
+  await DummyData.destroy({ where: { id: id } });
+  const data = JSON.stringify("Deleted");
+  res.status(200).send(data);
 });
 module.exports = router;

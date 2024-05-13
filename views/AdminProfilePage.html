@@ -18,20 +18,52 @@
             <img src="/images/Logo.jpg" alt="">
             <h1>ShopEx</h1>
         </div>
+        <div id="input">
+            <i style="margin-left: 10px;" class="fa fa-search"></i>
+            <input type="text" name="search" id="search" placeholder="Search">
+        </div>
         <button onclick="logout()">Logout</button>
     </div>
     <div id="content">
-        <div id="data"></div>
-        <div id="tableData">
-            <div id="header">
-                <h6>Product Name</h6>
-                <h6>Product Price</h6>
-                <h6>Product Quantity</h6>
-                <h6>Seller Email</h6>
-                <h6>Seller Name</h6>
+        <div id="tables">
+            <div style="border-top-right-radius: 10px; background-color: rgb(90, 25, 152)">
+                <h4>Product Table</h4>
+            </div>
+            <div style="border-bottom-right-radius: 10px;">
+                <h4>User Table</h4>
             </div>
         </div>
+
+        <div id="tableData">
+            <table id="table">
+                <tr id="head">
+                    <th style="border-top-left-radius: 10px;">Product Id</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Product Quantity</th>
+                    <th>Seller Email</th>
+                    <th style="border-top-right-radius: 10px;">Seller Name</th>
+                </tr>
+            </table>
+        </div>
+        <form id="form">
+            <div id="actions">
+                <div id="first" style="width: 60%;">
+                    <input type="number" placeholder="id">
+                    <button onclick="updateData()">Update</button>
+                    <button type="submit">Delete</button>
+                </div>
+                <div id="second">
+                    <input required type="text" placeholder="Product Name" value="">
+                    <input required type="text" placeholder="Product Price">
+                    <input required type="text" placeholder="Product Quantity">
+                    <input required type="text" placeholder="Seller Email">
+                    <input required type="text" placeholder="Seller Name">
+                </div>
+            </div>
+        </form>
     </div>
 </body>
 <script src="/css/AdminProfilePage.js"></script>
+
 </html>

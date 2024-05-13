@@ -7,7 +7,7 @@ html {
 #nav {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     width: 100%;
     height: 70px;
     background-color: white;
@@ -42,7 +42,6 @@ html {
     border-radius: 10px;
     color: white;
     background-color: green;
-    margin-left: 500px;
 }
 
 #nav button:hover {
@@ -54,48 +53,109 @@ html {
     width: 100%;
     height: 90vh;
     display: flex;
-    justify-content: space-between;
 }
 
-#data {
-    margin-top: 50px;
-    width: 100px;
-    height: 300px;
+#tables {
     border: 1px solid black;
+    height: 120px;
+    width: 120px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: 100px;
+    position: absolute;
 }
 
-#tableData {
-    width: 85%;
-    height: 80%;
-    border: 1px solid black;
-    margin-top: 40px;
-    margin-right: 30px;
-    overflow-y: auto;
-}
-
-#header {
-    display: flex;
-    justify-content: space-around;
-    width: 90%;
-}
-
-#header h6 {
-    font-size: 16px;
-}
-
-.values {
-    display: flex;
-    width: 90%;
-    height: 50px;
-    align-items: center;
-    border: 1px solid black;
-    margin: 10px;
-}
-
-.values div {
-    height: 100%;
-    border-right: 1px solid black;
+#tables div {
+    width: 100%;
+    height: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: blueviolet;
+}
+#tables div:hover
+{
+    cursor: pointer;
+}
+#tables div h4 {
+    margin: 0;
+    color: white;
+}
+
+#input {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    top: 15%;
+    right: 20%;
+}
+
+#input input {
+    border: none;
+    outline: none;
+    padding-left: 5px;
+    height: 28px;
+    width: 81%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#tableData {
+    height: 75%;
+    width: 75%;
+    margin-top: 20px;
+    margin-left: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid black;
+    overflow-y: auto;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+
+th,
+td {
+    border: 1px solid black;
+    text-align: center;
+}
+
+#actions {
+    position: absolute;
+    border: 1px solid black;
+    width: 900px;
+    height: 100px;
+    top: 83%;
+    left: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+#actions div {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+    
+#second input {
+    width: fit-content;
+    display: none;
 }
